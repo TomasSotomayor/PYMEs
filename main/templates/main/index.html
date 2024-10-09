@@ -1,11 +1,66 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuscaPYMEs | Inicio</title>
+    <title>BuscaPYMES</title>
+    <link rel="stylesheet" href="{% static 'main/static/css/style.css' %}">
 </head>
 <body>
-    
+    <header>
+        <img class="logo" src="logo.png" alt="Logo BuscaPYMES" height="40px">
+        <input type="text" class="search-bar" placeholder="Busca un producto...">
+        <div class="category-buttons">
+            <a href="#">Ropa</a>
+            <a href="#">Servicios</a>
+            <a href="#">Comida</a>
+            <a href="#">Tiendas</a>
+            <a href="#">Tatuajes</a>
+        </div>
+        <div class="settings">
+            <img src="settings-icon.png" alt="Settings">
+        </div>
+    </header>
+
+    <div class="content">
+        <!-- PYMEs guardadas -->
+        <div class="section-title">PYMEs guardadas</div>
+        <div class="pymes-saved">
+            <div>
+                <img src="hoodie.png" alt="Ropa de manga">
+                <p>Ropa de manga, anime, comics, etc.</p>
+                <a class="view-more" href="#">Ver más</a>
+            </div>
+            <div>
+                <img src="mate-cup.png" alt="Vasos materos personalizados">
+                <p>Vasos materos personalizados</p>
+                <a class="view-more" href="#">Ver más</a>
+            </div>
+        </div>
+
+        <!-- Lo más visto -->
+        <div class="section-title">Lo más visto</div>
+        <div class="most-viewed">
+            <div>
+                <img src="lol-shirt.png" alt="Ropa League of Legends">
+                <p>Ropa League of Legends</p>
+                <p>6.4K vistas</p>
+                <p>Vendo ropa con estampados del LoL</p>
+            </div>
+            <div>
+                <img src="gym-home.png" alt="GYM en casa">
+                <p>GYM en casa</p>
+                <p>5.2K vistas</p>
+                <p>Tengo un horario de gimnasio y enseño a...</p>
+            </div>
+            <div>
+                <img src="repair-shop.png" alt="Taller de reparación">
+                <p>Taller de reparación de dispositivos móviles</p>
+                <p>5.1K vistas</p>
+                <p>Reparo celulares y tabletas.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

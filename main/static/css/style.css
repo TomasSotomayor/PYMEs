@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3f3f3f;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: black;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.search-bar {
+    width: 400px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+}
+
+.category-buttons {
+    margin-left: 20px;
+    display: inline-block;
+}
+
+.category-buttons a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.settings {
+    float: right;
+    margin-right: 20px;
+    margin-top: -40px;
+}
+
+.settings img {
+    width: 20px;
+    height: 20px;
+}
+
+.content {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.pymes-saved, .most-viewed {
+    display: flex;
+    gap: 20px;
+}
+
+.pymes-saved div, .most-viewed div {
+    background-color: white;
+    color: black;
+    width: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.pymes-saved img, .most-viewed img {
+    width: 100%;
+    height: auto;
+}
+
+.view-more {
+    color: blue;
+    text-decoration: none;
+}
+
+.most-viewed div {
+    width: 180px;
+}
+
+.most-viewed img {
+    width: 100%;
+}
+
+.most-viewed p {
+    font-size: 12px;
+    margin: 5px 0;
+}
