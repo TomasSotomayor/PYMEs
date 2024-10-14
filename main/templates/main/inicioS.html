@@ -1,25 +1,28 @@
-{% extends "main/base.html"%}
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}  <!-- Carga los tags de crispy forms -->
 {% load static %}
 {% block content %}
 <div class="login-container">
     <h2 class="text-center">Iniciar Sesión</h2>
-    <form>
-        <div class="mb-3">
-            <label for="email" class="form-label" style="color: black;">Correo Electrónico</label>
-            <input type="email" class="form-control" id="email" required>
+
+    <!-- Mostrar los mensajes de error si existen -->
+    {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
         </div>
-        <div class="mb-3">
-            <label for="password" class="form-label" style="color: black;">Contraseña</label>
-            <input type="password" class="form-control" id="password" required>
-        </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}  <!-- Renderiza el formulario con crispy -->
         <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
         <div class="text-center mt-3">
             <span style="color: black;">No tienes una cuenta? </span>
-            <a href="#">Registrarse aquí</a>
+            <a href="{% url 'registros' %}">Registrarse aquí</a>
         </div>
     </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-ioUwDgDpN2a6K49UOx9DZg6Jx5LiBCq3Yh0r7G06mePLHhHwF+Ue7iBo9vo3yN2H" crossorigin="anonymous"></script>
 {% endblock %}

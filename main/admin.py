@@ -1,10 +1,7 @@
 from django.contrib import admin
-from .models import Usuario, Pyme, Resenna, Reporte
-# Register your models here.
+from .models import PYME, RESENNA, REPORTE
 
-
-# Registra los modelos en el administrador
-admin.site.register(Usuario)
-admin.site.register(Pyme)
-admin.site.register(Resenna)
-admin.site.register(Reporte)
+# Registra los modelos en el admin
+admin.site.register(PYME)
+admin.site.register(RESENNA)
+admin.site.register(REPORTE)
