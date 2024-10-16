@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 <div class="content">
-    <!-- PYMEs guardadas -->
+    <!-- PYMEs guardadas -->            
+    {% if request.user.is_authenticated %}
     <div class="section-title">PYMEs guardadas</div>
     <div class="pymes-saved">
         <div>
@@ -16,6 +17,7 @@
             <a class="view-more" href="#">Ver más</a>
         </div>
     </div>
+    {% endif %}
 
     <!-- Lo más visto -->
     <div class="section-title">Lo más visto</div>
