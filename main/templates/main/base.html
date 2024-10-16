@@ -10,18 +10,22 @@
     <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
 </head>
 <body>
-    <header>
-        <a href="{% url 'index' %}">
-            <img class="logo" src="{% static 'main/img/logo.png' %}" alt="Logo BuscaPYMES">
-        </a>
-        
-        <input type="text" class="search-bar" placeholder="Busca un producto...">
-        <div class="category-buttons">
-            <a href="#">Productos</a>
-            <a href="#">Servicios</a>
-            <a href="#">Contacto</a>
+    <header class="navbar">
+
+        <div class="logo-left">
+            <a href="{% url 'index' %}">
+                <img class="logo" src="{% static 'main/img/logo.png' %}" alt="Logo BuscaPYMES">
+            </a>
         </div>
-        <img class="settings" src="{% static 'main/img/config.png' %}" alt="Settings">
+        
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Busca una PYME...">
+            <div class="category-buttons">
+                <a href="#">Productos</a>
+                <a href="#">Servicios</a>
+                <a href="#">Contacto</a>
+            </div>
+        </div>
 
         <div class="btn-group ms-3">
             
@@ -39,6 +43,10 @@
                 <a href="{% url 'inicioS' %}" class="btn btn-primary">Iniciar Sesión</a>
                 <a href="{% url 'registros' %}" class="btn btn-outline-primary">Registrarse</a>
             {% endif %}
+        </div>
+
+        <div class="logo-right">
+            <img class="logo" src="{% static 'main/img/config.png' %}" alt="Settings">
         </div>
         
     </header>
