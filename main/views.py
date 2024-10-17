@@ -14,6 +14,12 @@ def inicioS(request):
 def registros(request):
     return render(request, 'main/registros.html')
 
+def pymebase(request):
+    return render(request, 'pymebase.html')
+
+def productos(request):
+    return render(request, 'productos.html')
+
 #funcion inicio de sesion
 def login_view(request):
     if request.method == "POST":
