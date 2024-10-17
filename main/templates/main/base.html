@@ -27,9 +27,10 @@
             </div>
         </div>
 
-        <div class="btn-group ms-3">
-            
-            {% if request.user.is_authenticated %}
+        <div class="logo-right">
+            <img src="{% static 'main/img/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="toggleButtons()">
+            <div class="button-container" id="button-container">
+                {% if request.user.is_authenticated %}
                 <!-- Si el usuario es admin -->
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     Bienvenido {{ request.user.first_name }}
@@ -38,11 +39,11 @@
                     <li><a class="dropdown-item" href="#">Gestión Moderadores</a></li>
                     <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
                 </ul>
-            {% else %}
-                <!-- Si el usuario no está autenticado -->
+                {% else %}
                 <a href="{% url 'inicioS' %}" class="btn btn-primary">Iniciar Sesión</a>
                 <a href="{% url 'registros' %}" class="btn btn-outline-primary">Registrarse</a>
-            {% endif %}
+                {% endif %}
+            </div>
         </div>
 
         <div class="logo-right">
@@ -57,5 +58,6 @@
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGz5Piuha7cW8yM5iOe7YHar/Upm1HGpqJfRrPui/5gFz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+5hb7ie6Pe1FrwZylzdEvZH5LjmXeN5Z0f1CB3V" crossorigin="anonymous"></script>
+    <script src="{% static 'main/js/script.js' %}"></script>
 </body>
 </html>
