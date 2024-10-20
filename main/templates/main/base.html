@@ -31,20 +31,25 @@
             <img src="{% static 'main/img/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="toggleButtons()">
             <div class="button-container" id="button-container">
                 {% if request.user.is_authenticated %}
-                <!-- Si el usuario es admin -->
-                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- Si el usuario es admin -->
                     Bienvenido {{ request.user.first_name }}
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Gestión Moderadores</a></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar Sesión</a></li>
-                </ul>
+                    <ul>
+                        <button type="submit" class="btn btn-primary">Gestion moderadores</button>
+                    </ul>
+                    <ul>
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+                        </form>
+                        
+                    </ul>
                 {% else %}
-                <a href="{% url 'inicioS' %}" class="btn btn-primary">Iniciar Sesión</a>
-                <a href="{% url 'registros' %}" class="btn btn-outline-primary">Registrarse</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión</a>
+                    <a href="#" class="btn btn-outline-primary">Registrarse</a>
                 {% endif %}
             </div>
         </div>
+        
 
         <div class="logo-right">
             <img class="logo" src="{% static 'main/img/config.png' %}" alt="Settings">

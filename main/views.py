@@ -15,7 +15,7 @@ def registros(request):
     return render(request, 'main/registros.html')
 
 def pymebase(request):
-    return render(request, 'pymebase.html')
+    return render(request, 'main/pymebase.html')
 
 def productos(request):
     return render(request, 'main/productos.html')
