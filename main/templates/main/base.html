@@ -12,13 +12,15 @@
 <body>
     <header class="navbar">
 
-        <div class="logo-left">
+        <!--Logo de la izquierda-->
+        <div class="logo-left col-2">
             <a href="{% url 'index' %}">
-                <img class="logo" src="{% static 'main/img/logo.png' %}" alt="Logo BuscaPYMES">
+                <img class="logo" src="{% static 'main/img/icons/logo.png' %}" alt="Logo BuscaPYMES">
             </a>
         </div>
         
-        <div class="search-container">
+        <!--Buscador y botones del centro-->
+        <div class="search-container col-8">
             <input type="text" class="search-bar" placeholder="Busca una PYME...">
             <div class="category-buttons">
                 <a href="{% url 'productos' %}">Productos</a>
@@ -27,8 +29,9 @@
             </div>
         </div>
 
-        <div class="logo-right">
-            <img src="{% static 'main/img/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="toggleButtons()">
+        <!--Iconos de la derecha-->
+        <div class="logo-right col-2">
+            <img src="{% static 'main/img/icons/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="toggleButtons()">
             <div class="button-container" id="button-container">
                 {% if request.user.is_authenticated %}
                     <!-- Si el usuario es admin -->
@@ -48,11 +51,7 @@
                     <a href="#" class="btn btn-outline-primary">Registrarse</a>
                 {% endif %}
             </div>
-        </div>
-        
-
-        <div class="logo-right">
-            <img class="logo" src="{% static 'main/img/config.png' %}" alt="Settings">
+            <img src="{% static 'main/img/icons/config.png' %}" alt="Settings" class="logo">
         </div>
         
     </header>
