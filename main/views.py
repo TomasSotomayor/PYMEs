@@ -18,7 +18,10 @@ def pymebase(request):
     return render(request, 'pymebase.html')
 
 def productos(request):
-    return render(request, 'productos.html')
+    return render(request, 'main/productos.html')
+
+def servicios(request):
+    return render(request, 'main/servicios.html')
 
 #funcion inicio de sesion
 def login_view(request):
