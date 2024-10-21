@@ -31,27 +31,32 @@
 
         <!--Iconos de la derecha-->
         <div class="logo-right col-2">
-            <img src="{% static 'main/img/icons/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="toggleButtons()">
-            <div class="button-container" id="button-container">
+            <img src="{% static 'main/img/icons/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="profileOptions()">
+            <ul class="profile-options list-unstyled" id="profile-options">
                 {% if request.user.is_authenticated %}
                     <!-- Si el usuario es admin -->
-                    Bienvenido {{ request.user.first_name }}
-                    <ul>
+                    <li>
+                        Bienvenido {{ request.user.first_name }}
+                    </li>
+                    <li>
                         <button type="submit" class="btn btn-primary">Gestion moderadores</button>
-                    </ul>
-                    <ul>
+                    </li>
+                    <li>
                         <form method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
                         </form>
-                        
-                    </ul>
+                    </li>
                 {% else %}
-                    <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión</a>
-                    <a href="#" class="btn btn-outline-primary">Registrarse</a>
+                    <li>
+                        <a href="{% url 'login' %}"  class="btn btn-primary">Iniciar Sesión</a>
+                    </li>
+                    <li>
+                        <a href="#" class="btn btn-outline-primary">Registrarse</a>
+                    </li>
                 {% endif %}
-            </div>
-            <img src="{% static 'main/img/icons/config.png' %}" alt="Settings" class="logo">
+            </ul>
+            <img src="{% static 'main/img/icons/config.png' %}" alt="settings" class="clickable-icon" onclick="profileOptions()">
         </div>
         
     </header>
