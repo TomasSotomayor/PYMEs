@@ -23,3 +23,25 @@ function configOptions() {
         configOptions.style.display = "none";
     }
 }
+
+const toggleButton = document.getElementById('theme-toggle');
+const currentTheme = localStorage.getItem('theme');
+
+// Aplica el tema almacenado si existe
+if (currentTheme === 'light') {
+document.body.classList.add('light-mode');
+toggleButton.textContent = 'Cambiar a modo oscuro';
+}
+
+toggleButton.addEventListener('click', function() {
+document.body.classList.toggle('light-mode');
+
+// Cambiar el texto del botón
+if (document.body.classList.contains('light-mode')) {
+    toggleButton.textContent = 'Cambiar a modo oscuro';
+    localStorage.setItem('theme', 'light');
+} else {
+    toggleButton.textContent = 'Cambiar a modo claro';
+    localStorage.setItem('theme', 'dark');
+}
+});
