@@ -9,4 +9,6 @@ urlpatterns = [
     path('pymebase/', views.pymebase, name='pymebase'),
     path('servicios/', views.servicios, name='servicios'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('registro/',views.registro, name='registro' ),
+    
 ]

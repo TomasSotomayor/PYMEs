@@ -1,0 +1,25 @@
+{% extends "main/base.html"%}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<br><br><br>
+<div class="container-center">
+    <di class="row">
+        <div class="col-12 col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Registro de usuario</h2>
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <input type="submit" value="registrar" class="btn btn-success" style="float: right;">
+                        <a href="{% url 'index' %}">Ir al home</a>
+                        <a href="{% url 'login' %}">Iniciar sesion</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </di>
+</div>
+{% endblock %}
