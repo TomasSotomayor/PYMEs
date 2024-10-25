@@ -39,7 +39,7 @@
                         Bienvenido {{ request.user.first_name }}
                     </li>
                     <li>
-                        <button type="submit" class="btn btn-primary">Gestion moderadores</button>
+                        <a href="{% url 'vistaAdmin' %}" type="submit" class="btn btn-primary">Gestion moderadores</a>
                     </li>
                     <li>
                         <form method="post" action="{% url 'logout' %}">

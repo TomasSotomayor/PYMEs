@@ -1,0 +1,10 @@
+{% extends "main/base.html"%}
+{% load static %}
+{% block content %}
+
+<h1>{{ user.username }}</h1>
+<p>Email: {{ user.email }}</p>
+<a href="{% url 'user_update' user.id %}">Update</a>
+<a href="{% url 'user_delete' user.id %}">Delete</a>
+
+{% endblock %}

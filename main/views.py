@@ -1,7 +1,9 @@
 from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CustomLoginForm, CustomUserCrearionForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
 
 
@@ -23,6 +25,9 @@ def productos(request):
 
 def servicios(request):
     return render(request, 'main/servicios.html')
+
+def vistaAdmin(request):
+    return render(request, 'main/vistaAdmin.html')
 
 #funcion inicio de sesion
 def login_view(request):
@@ -59,3 +64,46 @@ def registro(request):
         data['form'] = formulario
 
     return render(request, 'registration/registro.html', data)
+
+# funciones crud_admin
+
+
+def user_list(request):
+    group = Group.objects.get(id=2)  # Obtén el grupo con ID 2
+    users = group.user_set.all()  # Obtén todos los usuarios en ese grupo
+    return render(request, 'main/crud_admin/user_list.html', {'users': users})
+
+
+def user_detail(request, id):
+    user = get_object_or_404(User, id=id)
+    return render(request, 'main/crud_admin/user_detail.html', {'user': user})
+
+def user_create(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = Group.objects.get(id=2)  # Asigna el grupo con ID 2
+            user.groups.add(group)
+            return redirect('user_list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'main/crud_admin/user_form.html', {'form': form})
+
+def user_update(request, id):
+    user = get_object_or_404(User, id=id)
+    if request.method == "POST":
+        form = UserChangeForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_list')
+    else:
+        form = UserChangeForm(instance=user)
+    return render(request, 'main/crud_admin/user_form.html', {'form': form})
+
+def user_delete(request, id):
+    user = get_object_or_404(User, id=id)
+    if request.method == "POST":
+        user.delete()
+        return redirect('user_list')
+    return render(request, 'main/crud_admin/user_confirm_delete.html', {'user': user})

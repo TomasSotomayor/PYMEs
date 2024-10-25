@@ -1,0 +1,12 @@
+{% extends "main/base.html"%}
+{% load static %}
+{% block content %}
+
+<h1>Are you sure you want to delete {{ user.username }}?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'user_list' %}">Cancel</a>
+
+{% endblock %}

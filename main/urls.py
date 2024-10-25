@@ -10,5 +10,12 @@ urlpatterns = [
     path('servicios/', views.servicios, name='servicios'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('registro/',views.registro, name='registro' ),
-    
+    path('vistaAdmin/',views.vistaAdmin, name='vistaAdmin'),
+
+    #urls crud_admin
+    path('users/', views.user_list, name='user_list'),
+    path('users/<int:id>/', views.user_detail, name='user_detail'),
+    path('users/create/', views.user_create, name='user_create'),
+    path('users/<int:id>/update/', views.user_update, name='user_update'),
+    path('users/<int:id>/delete/', views.user_delete, name='user_delete'),
 ]

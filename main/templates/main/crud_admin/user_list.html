@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<div class="content">
+    <h1>Lista de moderadores</h1>
+    <il class="list-group">
+        <div class="user-list">
+            <div class="list-group-item list-group-item-action active">
+                <strong>ID</strong> - <strong>MODERADOR</strong> - <strong>CORREO ELECTRÓNICO</strong>
+            </div>
+            {% for user in users %}
+                <a href="{% url 'user_detail' user.id %}" class="list-group-item list-group-item-action">
+                    {{ user.id }} - {{ user.username }} - {{ user.email }}
+                </a>
+            {% endfor %}
+        </div>
+    </il>
+    <a href="{% url 'user_create' %}" class="btn btn-primary" style="margin-top: 5%;">Create New User</a>
+</div>
+{% endblock %}
