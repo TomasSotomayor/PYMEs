@@ -19,7 +19,7 @@ body {
 }
 
 body.light-mode {
-    --bg-color: white;
+    --bg-color: rgb(212, 212, 212);
     --text-color: black;
 }
 
@@ -156,6 +156,12 @@ body.light-mode {
 
 .profile-options button:hover, .config-options button:hover {
     background-color:#26b7ff;
+}
+
+.pyme-section {
+    border: 2px solid rgb(175, 175, 175);
+    border-radius: 5px;
+    margin-top: 40px;
 }
 
 .pymes-saved, .most-viewed {
