@@ -1,6 +1,7 @@
 # main/forms.py
 
 from django import forms
+from .models import PYME
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 
@@ -13,3 +14,9 @@ class CustomUserCrearionForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username',"first_name","last_name", "email","password1", "password2" ]
+
+
+class PYMEForm(forms.ModelForm):
+    class Meta:
+        model = PYME
+        fields = ['nombre', 'direccion', 'categoria', 'descripcion', 'estado', 'user']

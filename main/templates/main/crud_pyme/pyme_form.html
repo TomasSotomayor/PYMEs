@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="content">
+    <h1>{% if form.instance.id_PYME %}Editar PYME{% else %}Crear Nueva PYME{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">{% if form.instance.id_PYME %}Guardar Cambios{% else %}Crear{% endif %}</button>
+    </form>
+    <a href="{% url 'pyme_list' %}" class="btn btn-primary" style="margin-top: 5%;">Volver a la lista</a>
+</div>
+{% endblock %}

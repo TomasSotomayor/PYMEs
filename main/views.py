@@ -2,14 +2,29 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import CustomLoginForm, CustomUserCrearionForm
+from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
+from .models import PYME
+
+
 
 
 
 def index(request):
-    return render(request, 'main/index.html')
+    # Filtra los grupos del usuario con id 1 y 2
+    user_groups = request.user.groups.filter(id__in=[1, 2])
+    
+    # Verifica si el usuario pertenece a cada grupo
+    user_in_group_1 = user_groups.filter(id=1).exists()
+    user_in_group_2 = user_groups.filter(id=2).exists()
+    
+    # Pasa los resultados a la plantilla
+    return render(request, 'main/index.html', {
+        'user_in_group_1': user_in_group_1,
+        'user_in_group_2': user_in_group_2,
+    })
+
 
 def inicioS(request):
     return render(request, 'main/inicioS.html')
@@ -107,3 +122,43 @@ def user_delete(request, id):
         user.delete()
         return redirect('user_list')
     return render(request, 'main/crud_admin/user_confirm_delete.html', {'user': user})
+
+#crud pyme
+
+
+def pyme_list(request):
+    pymes = PYME.objects.all()
+    return render(request, 'main/crud_pyme/pyme_list.html', {'pymes': pymes})
+
+def pyme_detail(request, id):
+    pyme = get_object_or_404(PYME, id_PYME=id)
+    return render(request, 'main/crud_pyme/pyme_detail.html', {'pyme': pyme})
+
+
+def pyme_create(request):
+    if request.method == "POST":
+        form = PYMEForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('pyme_list')
+    else:
+        form = PYMEForm()
+    return render(request, 'main/crud_pyme/pyme_form.html', {'form': form})
+
+def pyme_update(request, id):
+    pyme = get_object_or_404(PYME, id_PYME=id)
+    if request.method == "POST":
+        form = PYMEForm(request.POST, instance=pyme)
+        if form.is_valid():
+            form.save()
+            return redirect('pyme_list')
+    else:
+        form = PYMEForm(instance=pyme)
+    return render(request, 'main/crud_pyme/pyme_form.html', {'form': form})
+
+def pyme_delete(request, id):
+    pyme = get_object_or_404(PYME, id_PYME=id)
+    if request.method == "POST":
+        pyme.delete()
+        return redirect('pyme_list')
+    return render(request, 'main/crud_pyme/pyme_confirm_delete.html', {'pyme': pyme})

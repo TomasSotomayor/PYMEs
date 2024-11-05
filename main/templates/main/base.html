@@ -34,27 +34,53 @@
             <img src="{% static 'main/img/icons/perfil.png' %}" alt="perfil" class="clickable-icon" onclick="profileOptions()">
             <ul class="profile-options list-unstyled" id="profile-options">
                 {% if request.user.is_authenticated %}
-                    <!-- Si el usuario es admin -->
-                    <li>
-                        Bienvenido {{ request.user.first_name }}
-                    </li>
-                    <li>
-                        <a href="{% url 'vistaAdmin' %}" type="submit" class="btn btn-primary">Gestion moderadores</a>
-                    </li>
-                    <li>
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li>
-                        <a href="{% url 'login' %}"  class="btn btn-primary">Iniciar Sesión</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'registro' %}" class="btn btn-outline-primary">Registrarse</a>
-                    </li>
-                {% endif %}
+        <!-- Si el usuario es admin -->
+        <li>
+            Bienvenido {{ request.user.first_name }}
+        </li>
+        {% if user_in_group_1 %}
+            <!-- Si el usuario está en el grupo con ID 1 -->
+            <li>
+                <a href="#" type="submit" class="btn btn-primary">Gestión de PYMEs</a>
+            </li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+                </form>
+            </li>
+        {% elif user_in_group_2 %}
+            <!-- Si el usuario está en el grupo con ID 2 -->
+            <li>
+                <a href="#" type="submit" class="btn btn-primary">Gestión Moderadores</a>
+            </li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+                </form>
+            </li>
+        {% else %}
+            <!-- Si el usuario está autenticado pero no pertenece a los grupos especificados -->
+            <li>
+                <a href="{% url 'vistaAdmin' %}" type="submit" class="btn btn-primary">Gestión Administrador</a>
+            </li>
+            <li>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+                </form>
+            </li>
+        {% endif %}
+    {% else %}
+        <li>
+            <a href="{% url 'login' %}" class="btn btn-primary">Iniciar Sesión</a>
+        </li>
+        <li>
+            <a href="{% url 'registro' %}" class="btn btn-outline-primary">Registrarse</a>
+        </li>
+    {% endif %}
+
             </ul>
             <img src="{% static 'main/img/icons/config.png' %}" alt="settings" class="clickable-icon" onclick="configOptions()">
             <ul class="config-options list-unstyled" id="config-options">

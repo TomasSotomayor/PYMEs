@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+<h1>¿Está seguro que desea eliminar la PYME "{{ pyme.nombre }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'pyme_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
+

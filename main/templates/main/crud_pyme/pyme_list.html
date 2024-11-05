@@ -1,33 +1,33 @@
 {% extends "main/base.html" %}
-{% load static %}
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center mb-4">Lista de Moderadores</h1>
-
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">MODERADOR</th>
-                <th scope="col">CORREO ELECTRÓNICO</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">CATEGORÍA</th>
+                <th scope="col">DESCRIPCIÓN</th>
                 <th scope="col">ACCIONES</th> <!-- Columna para los botones -->
             </tr>
         </thead>
         <tbody>
-            {% for user in users %}
+            {% for pyme in pymes %}
             <tr>
-                <td>{{ user.id }}</td> <!-- Celda para el ID -->
-                <td>{{ user.username }}</td> <!-- Celda para el nombre de usuario -->
-                <td>{{ user.email }}</td> <!-- Celda para el correo electrónico -->
+                <td>{{ pyme.id_PYME }}</td> <!-- Celda para el ID -->
+                <td>{{ pyme.nombre }}</td> <!-- Celda para el nombre -->
+                <td>{{ pyme.categoria.nombre }}</td> <!-- Celda para la categoría -->
+                <td>{{ pyme.descripcion|truncatewords:10 }}</td> <!-- Celda para la descripción truncada -->
                 <td>
                     <!-- Botones de acción -->
-                    <a href="{% url 'user_detail' user.id %}" class="btn btn-info btn-sm" title="Ver detalles">
+                    <a href="{% url 'pyme_detail' pyme.id_PYME %}" class="btn btn-info btn-sm" title="Ver detalles">
                         <i class="bi bi-eye"></i> Detalles
                     </a>
-                    <a href="{% url 'user_update' user.id %}" class="btn btn-warning btn-sm" title="Editar">
+                    <a href="{% url 'pyme_update' pyme.id_PYME %}" class="btn btn-warning btn-sm" title="Editar">
                         <i class="bi bi-pencil"></i> Editar
                     </a>
-                    <form method="post" action="{% url 'user_delete' user.id %}" style="display:inline;">
+                    <form method="post" action="{% url 'pyme_delete' pyme.id_PYME %}" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger btn-sm" title="Eliminar">
                             <i class="bi bi-trash"></i> Eliminar
@@ -38,12 +38,9 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <div class="text-center mt-4">
-        <a href="{% url 'user_create' %}" class="btn btn-primary">
-            <i class="bi bi-plus-circle"></i> Crear Nuevo Moderador
-        </a>
-    </div>
+    
+    <a href="{% url 'pyme_create' %}" class="btn btn-primary" style="margin-top: 5%;">Crear Nueva PYME</a>
 </div>
-
 {% endblock %}
+
+
