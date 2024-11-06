@@ -162,6 +162,7 @@ body.light-mode {
     border: 2px solid rgb(175, 175, 175);
     border-radius: 5px;
     margin-top: 40px;
+    padding: 10px;
 }
 
 .pymes-saved, .most-viewed {
