@@ -5,22 +5,26 @@
 }
 
 :root {
-    --nav-color:black;
-    --bg-color:rgb(65,65,65);
-    --text-color:white;
+    --nav-color:rgb(35, 20, 10);
+    --bg-color:rgb(80, 60, 45);
+    --text-a-color:rgb(255, 235, 185);
+    --text-b-color: rgb(80, 60, 45);
+    --button-color: rgb(245, 115, 0);
 }
 
 body {
     font-family: Arial, sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--text-a-color);
     margin: 0;
     padding: 0;
 }
 
 body.light-mode {
-    --bg-color: rgb(212, 212, 212);
-    --text-color: black;
+    --nav-color: rgb(80, 60, 45);
+    --bg-color: rgb(255, 235, 185);
+    --text-a-color: rgb(35, 20, 10);
+    --text-b-color: rgb(255, 235, 185);
 }
 
 .category-buttons {
@@ -30,7 +34,7 @@ body.light-mode {
 }
 
 .category-buttons a {
-    color: white;
+    color: rgb(255, 235, 185);;
     margin-right: 15px;
     text-decoration: none;
     font-size: 14px;
@@ -69,12 +73,12 @@ body.light-mode {
 }
 
 .login-container .btn {
-    background-color: #26b7ff; /* Color de fondo del botón */
+    background-color: var(--button-color); /* Color de fondo del botón */
     border: none; /* Sin borde */
 }
 
 .login-container .btn:hover {
-    background-color: #26b7ff; /* Color al pasar el ratón sobre el botón */
+    background-color: var(--button-color); /* Color al pasar el ratón sobre el botón */
 }
 
 .login-container .form-control {
@@ -82,7 +86,7 @@ body.light-mode {
 }
 
 .login-container .text-center a {
-    color: #26b7ff; /* Color del enlace de registro */
+    color: var(--button-color); /* Color del enlace de registro */
     text-decoration: none;
 }
 
@@ -124,20 +128,13 @@ body.light-mode {
     background-color: var(--nav-color);
     padding: 10px 0;
     align-items: center;
-    color: var(--text-color);
     padding:10px;
-}
-
-.navbar.light-mode {
-    --bg-color: rgb(190,190,190);
-    --text-color: black;
 }
 
 .profile-options, .config-options {
     display:none;
     position:fixed;
-    background-color: black;
-    border-color: rgb(246,113,0);
+    background-color: var(--nav-color);
     justify-content: center;
     align-items: center;
     width: 50%;
@@ -151,11 +148,11 @@ body.light-mode {
 }
 
 .profile-options button:hover, .config-options button:hover {
-    background-color:#26b7ff;
+    background-color:var(--button-color);
 }
 
 .pyme-section {
-    border: 2px solid rgb(175, 175, 175);
+    border: 2px solid var(--text-a-color);
     border-radius: 5px;
     margin-top: 40px;
     padding: 10px;
@@ -167,8 +164,8 @@ body.light-mode {
 }
 
 .pymes-saved div, .most-viewed div {
-    background-color: white;
-    color: black;
+    background-color: var(--text-a-color);
+    color: var(--nav-color);
     width: 150px;
     padding: 10px;
     border-radius: 5px;
@@ -209,6 +206,6 @@ body.light-mode {
 }
 
 .view-more {
-    color: #26b7ff;
+    color: var(--button-color);
     text-decoration: none;
 }
