@@ -1,8 +1,8 @@
 {% extends "main/base.html"%}
 {% load static %}
 {% block content %}
+
 <div class="content">
-    <!-- PYMEs guardadas -->            
     {% if request.user.is_authenticated %}
     <div class="pyme-section">
         <div class="section-title">PYMEs guardadas</div>
@@ -21,29 +21,46 @@
     </div>
     {% endif %}
 
-    <!-- Lo más visto -->
     <div class="pyme-section">
-        <div class="section-title">Lo más popular</div>
-        <div class="most-viewed">
+        <div class="section-title">Lo más visto</div>
+        <div class="pymes-saved">
             <div>
                 <img src="{% static 'main/img/images/lol-shirt.jpg' %}" alt="Ropa League of Legends">
                 <p>Ropa League of Legends</p>
-                <p>6.4K vistas</p>
-                <p>Vendo ropa con estampados del LoL</p>
+                <a class="view-more" href="#">Ver más</a>
             </div>
             <div>
                 <img src="{% static 'main/img/images/gym-home.jpeg' %}" alt="GYM en casa">
                 <p>GYM en casa</p>
-                <p>5.2K vistas</p>
-                <p>Inserte descripción</p>
+                <a class="view-more" href="#">Ver más</a>
             </div>
             <div>
                 <img src="{% static 'main/img/images/repair-shop.jpeg' %}" alt="Taller de reparación">
                 <p>Taller de reparación de dispositivos móviles</p>
-                <p>5.1K vistas</p>
-                <p>Reparo celulares y tabletas.</p>
+                <a class="view-more" href="#">Ver más</a>
+            </div>
+        </div>
+    </div>
+    <div class="pyme-section">
+        <div class="section-title">Lo más guardado</div>
+        <div class="pymes-saved">
+            <div>
+                <img src="{% static 'main/img/images/lol-shirt.jpg' %}" alt="Ropa League of Legends">
+                <p>Ropa League of Legends</p>
+                <a class="view-more" href="#">Ver más</a>
+            </div>
+            <div>
+                <img src="{% static 'main/img/images/gym-home.jpeg' %}" alt="GYM en casa">
+                <p>GYM en casa</p>
+                <a class="view-more" href="#">Ver más</a>
+            </div>
+            <div>
+                <img src="{% static 'main/img/images/repair-shop.jpeg' %}" alt="Taller de reparación">
+                <p>Taller de reparación de dispositivos móviles</p>
+                <a class="view-more" href="#">Ver más</a>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}
