@@ -5,25 +5,13 @@ from django.contrib import messages
 from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
-from .models import PYME
-
-
-
+from .models import PYME,UserGrupo
 
 
 def index(request):
-    # Filtra los grupos del usuario con id 1 y 2
-    user_groups = request.user.groups.filter(id__in=[1, 2])
-    
-    # Verifica si el usuario pertenece a cada grupo
-    user_in_group_1 = user_groups.filter(id=1).exists()
-    user_in_group_2 = user_groups.filter(id=2).exists()
-    
-    # Pasa los resultados a la plantilla
-    return render(request, 'main/index.html', {
-        'user_in_group_1': user_in_group_1,
-        'user_in_group_2': user_in_group_2,
-    })
+    return render(request, 'main/index.html')
+
+
 
 
 def inicioS(request):

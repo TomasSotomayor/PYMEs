@@ -1,13 +1,14 @@
 {% extends "main/base.html" %}
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Lista de Moderadores</h1>
+    <h1 class="text-center mb-4">Lista de PYMEs</h1>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">NOMBRE</th>
                 <th scope="col">CATEGORÍA</th>
+                <th scope="col">DUEÑO</th>
                 <th scope="col">DESCRIPCIÓN</th>
                 <th scope="col">ACCIONES</th> <!-- Columna para los botones -->
             </tr>
@@ -18,6 +19,7 @@
                 <td>{{ pyme.id_PYME }}</td> <!-- Celda para el ID -->
                 <td>{{ pyme.nombre }}</td> <!-- Celda para el nombre -->
                 <td>{{ pyme.categoria.nombre }}</td> <!-- Celda para la categoría -->
+                <td>{{ pyme.user.username }}</td> 
                 <td>{{ pyme.descripcion|truncatewords:10 }}</td> <!-- Celda para la descripción truncada -->
                 <td>
                     <!-- Botones de acción -->
