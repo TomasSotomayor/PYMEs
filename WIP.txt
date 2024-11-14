@@ -1,0 +1,3 @@
+Usen este bloc de notas para anotar lo que falte por hacer.
+Cuando hagan un push, fíjense de no añadir este archivo a los cambios. Así no habrán
+problemas por cambios aquí.
