@@ -19,4 +19,16 @@ class CustomUserCrearionForm(UserCreationForm):
 class PYMEForm(forms.ModelForm):
     class Meta:
         model = PYME
-        fields = ['nombre', 'direccion', 'categoria', 'descripcion', 'estado', 'user']
+        fields = ['nombre', 'direccion', 'categoria', 'descripcion', 'estado', 'user', 'imagen']
+
+class PYMEForm2(forms.ModelForm):
+    class Meta:
+        model = PYME
+        fields = ['nombre', 'categoria', 'descripcion', 'estado', 'imagen']  # Agrega 'imagen' a los campos
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'categoria': forms.Select(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'}),
+            'estado': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'imagen': forms.FileInput(attrs={'class': 'form-control-file'}),  # Usamos FileInput para la carga de imágenes
+        }

@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% block content %}
+    <h1>Crear una nueva PYME</h1>
+
+    <form method="POST" enctype="multipart/form-data">  <!-- Asegúrate de usar enctype para subir imágenes -->
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderiza el formulario con los campos como párrafos -->
+        <button type="submit" class="btn btn-primary">Crear PYME</button>
+    </form>
+
+    <a href="{% url 'pyme_usuario' %}" class="btn btn-secondary">Cancelar</a>
+{% endblock %}

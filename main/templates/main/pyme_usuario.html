@@ -1,16 +1,32 @@
 {% extends "main/base.html" %}
 {% load static %}
 {% block content %}
+<div class="container">
+    <h1>LISTA DE PYMES</h1>
+    <a href="{% url 'pyme_create_user' %}" class="btn btn-primary">Crear PYME</a>  <!-- Redirige al formulario de creación -->
 
-{% for pyme in pymes %}
+    {% for pyme in pymes %}
     <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
+        {% if pyme.imagen %}
+        <img src="{{ pyme.imagen.url }}" class="card-img-top" alt="{{ pyme.nombre }}">
+        {% else %}
+        <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagen no disponible">
+        {% endif %}
         <div class="card-body">
             <h5 class="card-title">{{ pyme.nombre }}</h5>
             <p class="card-text">{{ pyme.descripcion }}</p>
-            <a href="#" class="btn btn-primary">Editar</a>
+
+            <form method="post" action="{% url 'pyme_delete_usuario' pyme_id=pyme.id_PYME %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">ELIMINAR PYME</button>
+            </form>
+
+            <a href="{% url 'edit_pyme_usuario' pyme_id=pyme.id_PYME %}" class="btn btn-warning btn-sm">Editar PYME</a>
         </div>
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
+
+
 
 {% endblock %}

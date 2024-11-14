@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm
+from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm,PYMEForm2
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
 from .models import PYME,UserGrupo
@@ -31,8 +31,13 @@ def vistaAdmin(request):
 
 def pyme_usuario(request):
     pymes = PYME.objects.filter(user=request.user)
-    context = {'pymes': pymes}  # Pasar 'pymes' en un diccionario
+    # Verifica los IDs de todas las pymes
+    for pyme in pymes:
+        print(f"PYME ID: {pyme.id_PYME}, Nombre: {pyme.nombre}")  # Verifica los IDs de las pymes
+    
+    context = {'pymes': pymes}
     return render(request, 'main/pyme_usuario.html', context)
+
 
 #funcion inicio de sesion
 def login_view(request):
@@ -152,3 +157,40 @@ def pyme_delete(request, id):
         pyme.delete()
         return redirect('pyme_list')
     return render(request, 'main/crud_pyme/pyme_confirm_delete.html', {'pyme': pyme})
+
+
+#crud usuarios
+
+def edit_pyme_usuario(request, pyme_id):
+    pyme = get_object_or_404(PYME, pk=pyme_id)
+
+    if request.method == 'POST':
+        form = PYMEForm2(request.POST, request.FILES, instance=pyme)  # No olvides agregar request.FILES
+        if form.is_valid():
+            form.save()
+            return redirect('pyme_usuario')
+    else:
+        form = PYMEForm2(instance=pyme)
+
+    context = {'form': form, 'pyme': pyme}
+    return render(request, 'main/edit_pyme_usuario.html', context)
+
+def pyme_delete_usuario(request, pyme_id):
+    pyme = get_object_or_404(PYME, pk=pyme_id)  # Obtener la PYME por ID
+
+    if request.method == 'POST':  # Confirmación de eliminación
+        pyme.delete()  # Eliminar el objeto PYME de la base de datos
+        return redirect('pyme_usuario')  # Redirigir al listado de PYMES
+
+    return render(request, 'main/confirmar_eliminar.html', {'pyme': pyme}) 
+
+def pyme_create_user(request):
+    if request.method == 'POST':
+        form = PYMEForm2(request.POST, request.FILES)  # Asegúrate de manejar los archivos (imagen)
+        if form.is_valid():
+            form.save()  # Guardar la nueva PYME en la base de datos
+            return redirect('pyme_usuario')  # Redirigir al listado de PYMES
+    else:
+        form = PYMEForm2()  # Formulario vacío
+
+    return render(request, 'main/pyme_create_user.html', {'form': form})
