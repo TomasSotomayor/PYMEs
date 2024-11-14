@@ -6,10 +6,19 @@
 
 :root {
     --nav-color:rgb(35, 20, 10);
-    --bg-color:rgb(80, 60, 45);
+    --bg-color:rgb(115, 85, 65);
     --text-a-color:rgb(255, 235, 185);
-    --text-b-color: rgb(80, 60, 45);
+    --text-b-color: rgb(115, 85, 65);
     --button-color: rgb(245, 115, 0);
+    --button-hover-color: rgb(255, 235, 185);
+}
+
+#theme-toggle {
+    transition: fill ease;
+}
+
+#theme-toggle:hover {
+    fill: rgb(255, 235, 185);
 }
 
 body {
@@ -21,10 +30,26 @@ body {
 }
 
 body.light-mode {
-    --nav-color: rgb(80, 60, 45);
     --bg-color: rgb(255, 235, 185);
-    --text-a-color: rgb(35, 20, 10);
+    --text-a-color: rgb(115, 85, 65);
     --text-b-color: rgb(255, 235, 185);
+}
+
+.btn {
+    background-color: var(--button-color);
+    color: rgb(255, 235, 185);
+    border: 1px solid var(--button-color);
+}
+
+.btn:hover {
+    background-color: var(--button-hover-color);
+    color: var(--button-color);
+    border: 1px solid var(--button-color);
+}
+
+.card {
+    background-color: var(--text-a-color);
+    color: var(--text-b-color);
 }
 
 .category-buttons {
@@ -62,7 +87,7 @@ body.light-mode {
     background-color: white; /* Fondo blanco */
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
     margin: auto; /* Centrar en la página */
     margin-top: 100px; /* Espacio desde el top */
@@ -78,7 +103,7 @@ body.light-mode {
 }
 
 .login-container .btn:hover {
-    background-color: var(--button-color); /* Color al pasar el ratón sobre el botón */
+    background-color: var(--button-hover-color); /* Color al pasar el ratón sobre el botón */
 }
 
 .login-container .form-control {
@@ -118,7 +143,7 @@ body.light-mode {
 }
 
 .most-viewed p {
-    font-size: 12px;
+    font-size: 11px;
     margin: 5px 0;
 }
 
@@ -148,11 +173,11 @@ body.light-mode {
 }
 
 .profile-options button:hover, .config-options button:hover {
-    background-color:var(--button-color);
+    background-color: rgb(255, 235, 185);
 }
 
 .pyme-section {
-    border: 2px solid var(--text-a-color);
+    border: 1px solid var(--text-a-color);
     border-radius: 5px;
     margin-top: 40px;
     padding: 10px;
@@ -165,7 +190,7 @@ body.light-mode {
 
 .pymes-saved div, .most-viewed div {
     background-color: var(--text-a-color);
-    color: var(--nav-color);
+    color: var(--text-b-color);
     width: 150px;
     padding: 10px;
     border-radius: 5px;
@@ -203,9 +228,4 @@ body.light-mode {
 .settings img {
     width: 20px;
     height: 20px;
-}
-
-.view-more {
-    color: var(--button-color);
-    text-decoration: none;
 }

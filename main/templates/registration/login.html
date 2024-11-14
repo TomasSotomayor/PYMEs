@@ -14,7 +14,11 @@
                         {% csrf_token %}
                         {{ form | crispy }}
                         <input type="submit" value="Ingresar" class="btn btn-success" style="float: right;">
+<<<<<<< Updated upstream
                         <a href="{% url 'index' %}">Ir al home</a>
+=======
+                        <a href="{% url 'index' %}" class="btn">Ir a inicio</a>
+>>>>>>> Stashed changes
                     </form>
                 </div>
             </div>
