@@ -48,7 +48,7 @@
                         {% elif request.user.usergrupo.grupo.id_grupo == 2 %}
                             <!-- Opciones para el grupo con ID 2 (PYMEs) -->
                             <li>
-                                <a href="#" class="btn btn-primary">Gestión PYMEs</a>
+                                <a href="{% url 'pyme_usuario' %}" class="btn btn-primary">Gestión PYMEs</a>
                             </li>
                         {% else %}
                             <!-- Opciones para otros grupos especificados -->

@@ -11,9 +11,6 @@ from .models import PYME,UserGrupo
 def index(request):
     return render(request, 'main/index.html')
 
-
-
-
 def inicioS(request):
     return render(request, 'main/inicioS.html')
 
@@ -31,6 +28,11 @@ def servicios(request):
 
 def vistaAdmin(request):
     return render(request, 'main/vistaAdmin.html')
+
+def pyme_usuario(request):
+    pymes = PYME.objects.filter(user=request.user)
+    context = {'pymes': pymes}  # Pasar 'pymes' en un diccionario
+    return render(request, 'main/pyme_usuario.html', context)
 
 #funcion inicio de sesion
 def login_view(request):

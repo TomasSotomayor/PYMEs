@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from .views import productos
 
 urlpatterns = [
+
     path('index/', views.index, name='index'),
     path('productos/', views.productos, name='productos'),
     path('pymebase/', views.pymebase, name='pymebase'),
@@ -25,4 +26,7 @@ urlpatterns = [
     path('pymes/create/', views.pyme_create, name='pyme_create'), 
     path('pymes/<int:id>/update/', views.pyme_update, name='pyme_update'), 
     path('pymes/<int:id>/delete/', views.pyme_delete, name='pyme_delete'),
+
+    #urls usuarios
+    path('pyme_usuario/',views.pyme_usuario, name='pyme_usuario')
 ]

@@ -1,0 +1,16 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+
+{% for pyme in pymes %}
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ pyme.nombre }}</h5>
+            <p class="card-text">{{ pyme.descripcion }}</p>
+            <a href="#" class="btn btn-primary">Editar</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
