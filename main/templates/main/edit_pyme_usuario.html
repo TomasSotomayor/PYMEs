@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<h1>Editar PYME: {{ pyme.nombre }}</h1>
+
+<form method="post" enctype="multipart/form-data">  <!-- Asegúrate de agregar enctype para manejar archivos -->
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="id_nombre">Nombre:</label>
+        {{ form.nombre }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_categoria">Categoría:</label>
+        {{ form.categoria }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_descripcion">Descripción:</label>
+        {{ form.descripcion }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_estado">Estado:</label>
+        {{ form.estado }}
+    </div>
+
+    <div class="form-group">
+        <label for="id_imagen">Imagen:</label>
+        {{ form.imagen }}
+    </div>
+
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<a href="{% url 'pyme_usuario' %}">Cancelar</a>
+
+{% endblock %}
