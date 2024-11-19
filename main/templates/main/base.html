@@ -43,7 +43,7 @@
                         {% if request.user.usergrupo.grupo.id_grupo == 1 %}
                             <!-- Opciones para el grupo con ID 1 (Moderadores) -->
                             <li>
-                                <a href="#" class="btn">Gestión Moderadores</a>
+                                <a href="{% url 'vista_moderador' %}" class="btn">Gestión Moderadores</a>
                             </li>
                         {% elif request.user.usergrupo.grupo.id_grupo == 2 %}
                             <!-- Opciones para el grupo con ID 2 (PYMEs) -->

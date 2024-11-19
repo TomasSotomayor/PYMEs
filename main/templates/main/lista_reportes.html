@@ -1,0 +1,54 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="report-list">
+    <h1>Lista de Reportes</h1>
+
+    <!-- Formulario para filtrar por ID de PYME -->
+    <form method="get" class="filter-form">
+        <label for="pyme_id">Filtrar por ID de PYME:</label>
+        <input type="number" id="pyme_id" name="pyme_id" value="{{ pyme_id }}" placeholder="Ingrese ID de PYME">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="{% url 'listar_reportes' %}" class="btn btn-secondary">Quitar Filtros</a>
+    </form>
+
+    <!-- Tabla de reportes -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID Reporte</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">PYME Asociada</th>
+                <th scope="col">Acciones</th> <!-- Columna para botones -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes %}
+            <tr>
+                <td>{{ reporte.id_reporte }}</td> <!-- ID del reporte -->
+                <td>{{ reporte.descripcion|default:"Sin descripción" }}</td> <!-- Descripción del reporte -->
+                <td>
+                    {{ reporte.pyme.nombre }} <br>
+                    <small>(ID PYME: {{ reporte.pyme.id_PYME }})</small> <!-- Nombre y ID de la PYME asociada -->
+                </td>
+                <td>
+                    <!-- Botones de acción -->
+                    <a href="{% url 'pyme_detail' reporte.pyme.id_PYME %}" class="btn btn-info btn-sm" title="Ver PYME">
+                        <i class="bi bi-eye"></i> Ver PYME
+                    </a>
+                    <form method="post" action="{% url 'reporte_delete' reporte.id_reporte %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm" title="Eliminar Reporte">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock %}

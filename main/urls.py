@@ -15,6 +15,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('registro/',views.registro, name='registro' ),
     path('vistaAdmin/',views.vistaAdmin, name='vistaAdmin'),
+    path('vista_moderador',views.vista_moderador, name='vista_moderador'),
+    path('lista_reportes',views.lista_reportes, name='lista_reportes'),
 
     #urls crud_admin
     path('users/', views.user_list, name='user_list'),
@@ -34,6 +36,10 @@ urlpatterns = [
     path('pyme_usuario/',views.pyme_usuario, name='pyme_usuario'),
     path('pyme_usuario/edit/<int:id_pyme>/', views.pyme_usuario_edit, name='pyme_usuario_edit'),
     path('pyme_usuario/delete/<int:id_pyme>/', views.pyme_usuario_delete, name='pyme_usuario_delete'),
+    path('pyme/<int:id_PYME>/', views.pyme, name='pyme'),
+    path('pyme/<int:id_PYME>/reportar/', views.report_pyme, name='report_pyme'),
+    path('reportes/', views.listar_reportes, name='listar_reportes'),
+    path('reporte/<int:reporte_id>/delete/', views.reporte_delete, name='reporte_delete'),
 ]
 
 if settings.DEBUG:

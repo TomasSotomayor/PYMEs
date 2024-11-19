@@ -5,7 +5,7 @@ from django.contrib import messages
 from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm, PYMEForm2
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
-from .models import PYME
+from .models import PYME, REPORTE
 
 def index(request):
     pymes = PYME.objects.all()
@@ -28,6 +28,12 @@ def servicios(request):
 
 def vistaAdmin(request):
     return render(request, 'main/vistaAdmin.html')
+
+def vista_moderador(request):
+    return render(request, 'main/crud_moderador/vista_moderador.html')
+
+def lista_reportes(request):
+    return render(request, 'main/lista_reportes.html')
 
 #funcion inicio de sesion
 def login_view(request):
@@ -175,3 +181,56 @@ def pyme_usuario_delete(request, id_pyme):
     
     context = {'pyme': pyme}
     return render(request, 'main/pyme_usuario_delete.html', context)
+
+def pyme(request, id_PYME):
+    pyme = get_object_or_404(PYME, id_PYME=id_PYME)
+    context = {
+        'pyme': pyme,
+    }
+    return render(request, 'main/pyme.html', context)
+
+def report_pyme(request, id_PYME):
+    pyme = get_object_or_404(PYME, id_PYME=id_PYME)
+    
+    if request.method == 'POST':
+        descripcion = request.POST.get('descripcion')
+        if descripcion:
+            reporte = REPORTE.objects.create(pyme=pyme, descripcion=descripcion)
+            reporte.save()
+            messages.success(request, 'El reporte ha sido enviado exitosamente.')
+            return redirect('pyme', id_PYME=id_PYME)
+        else:
+            messages.error(request, 'La descripción no puede estar vacía.')
+
+    context = {
+        'pyme': pyme,
+    }
+    return render(request, 'main/reporte.html', context)
+
+def listar_reportes(request):
+    pyme_id = request.GET.get('pyme_id')
+    if pyme_id:
+        reportes = REPORTE.objects.filter(pyme__id_PYME=pyme_id)
+    else:
+        reportes = REPORTE.objects.all()
+
+    context = {
+        'reportes': reportes,
+        'pyme_id': pyme_id,  # Para mostrar en el campo de filtro si se aplicó
+    }
+    return render(request, 'main/lista_reportes.html', context)
+
+def reporte_delete(request, reporte_id):
+    """
+    Vista para eliminar un reporte específico.
+    """
+    # Obtener el reporte o lanzar un error 404 si no existe
+    reporte = get_object_or_404(REPORTE, id_reporte=reporte_id)
+
+    if request.method == "POST":
+        reporte.delete()
+        messages.success(request, "El reporte ha sido eliminado exitosamente.")
+        return redirect('lista_reportes')  # Redirigir a la lista de reportes
+
+    # Si no es POST, redirigir a la lista de reportes
+    return redirect('lista_reportes')

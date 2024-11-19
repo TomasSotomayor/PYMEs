@@ -1,0 +1,20 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="pyme-details">
+    <h1>{{ pyme.nombre }}</h1>
+    {% if pyme.imagen %}
+        <img src="{{ pyme.imagen.url }}" alt="Imagen de {{ pyme.nombre }}" style="max-width: 100%; height: auto;">
+    {% else %}
+        <img src="{% static 'main/img/error.jpg' %}" alt="Imagen no disponible" style="height: 12rem; object-fit: cover;" />
+    {% endif %}
+    <p><strong>Dirección:</strong> {{ pyme.direccion }}</p>
+    <p><strong>Categoría:</strong> {{ pyme.categoria }}</p>
+    <p><strong>Descripción:</strong> {{ pyme.descripcion }}</p>
+    <p><strong>Estado:</strong> {{ pyme.estado|yesno:"Activa,Inactiva" }}</p>
+    <a href="{% url 'index' %}" class="btn btn-primary">Volver</a>
+    <a href="{% url 'report_pyme' pyme.id_PYME %}" class="btn btn-danger">Reportar PYME</a>
+</div>
+
+{% endblock %}

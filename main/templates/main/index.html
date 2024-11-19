@@ -98,7 +98,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ pyme.nombre }}</h5>
                         <p class="card-text">{{ pyme.descripcion }}</p>
-                        <a class="view-more" href="#">Ver más</a>
+                        <a class="view-more" href="{% url 'pyme' pyme.id_PYME %}">Ver más</a>
                     </div>
                 </div>
             {% endfor %}
