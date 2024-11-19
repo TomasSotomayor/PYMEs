@@ -2,15 +2,31 @@
 {% load static %}
 {% block content %}
 
-{% for pyme in pymes %}
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ pyme.nombre }}</h5>
-            <p class="card-text">{{ pyme.descripcion }}</p>
-            <a href="#" class="btn btn-primary">Editar</a>
-        </div>
+<div class="pyme-section">
+    <div class="section-title">Tus PYMES</div>
+    <div class="pymes-saved">
+        {% for pyme in pymes %}
+            <div class="card" style="width: 18rem; margin: 1rem;">
+                {% if pyme.imagen %}
+                    <img src="{{ pyme.imagen.url }}" class="card-img-top" alt="Imagen de {{ pyme.nombre }}"
+                        style="height: 12rem; object-fit: cover;" />
+                {% else %}
+                    <img src="{% static 'main/img/error.jpg' %}" class="card-img-top" alt="Imagen no disponible"
+                        style="height: 12rem; object-fit: cover;" />
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ pyme.nombre }}</h5>
+                    <p class="card-text">{{ pyme.descripcion }}</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'pyme_usuario_edit' pyme.id_PYME %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'pyme_usuario_delete' pyme.id_PYME %}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>
 
 {% endblock %}
+
+

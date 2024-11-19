@@ -2,14 +2,14 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm
+from .forms import CustomLoginForm, CustomUserCrearionForm, PYMEForm, PYMEForm2
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import Group
-from .models import PYME,UserGrupo
-
+from .models import PYME
 
 def index(request):
-    return render(request, 'main/index.html')
+    pymes = PYME.objects.all()
+    return render(request, 'main/index.html', {'pymes':pymes})
 
 def inicioS(request):
     return render(request, 'main/inicioS.html')
@@ -28,11 +28,6 @@ def servicios(request):
 
 def vistaAdmin(request):
     return render(request, 'main/vistaAdmin.html')
-
-def pyme_usuario(request):
-    pymes = PYME.objects.filter(user=request.user)
-    context = {'pymes': pymes}  # Pasar 'pymes' en un diccionario
-    return render(request, 'main/pyme_usuario.html', context)
 
 #funcion inicio de sesion
 def login_view(request):
@@ -71,8 +66,6 @@ def registro(request):
     return render(request, 'registration/registro.html', data)
 
 # funciones crud_admin
-
-
 def user_list(request):
     group = Group.objects.get(id=2)  # Obtén el grupo con ID 2
     users = group.user_set.all()  # Obtén todos los usuarios en ese grupo
@@ -114,8 +107,6 @@ def user_delete(request, id):
     return render(request, 'main/crud_admin/user_confirm_delete.html', {'user': user})
 
 #crud pyme
-
-
 def pyme_list(request):
     pymes = PYME.objects.all()
     return render(request, 'main/crud_pyme/pyme_list.html', {'pymes': pymes})
@@ -152,3 +143,35 @@ def pyme_delete(request, id):
         pyme.delete()
         return redirect('pyme_list')
     return render(request, 'main/crud_pyme/pyme_confirm_delete.html', {'pyme': pyme})
+
+
+#pymes usuario
+
+def pyme_usuario(request):
+    pymes = PYME.objects.filter(user=request.user)
+    context = {'pymes': pymes}  # Pasar 'pymes' en un diccionario
+    return render(request, 'main/pyme_usuario.html', context)
+
+def pyme_usuario_edit(request, id_pyme):
+    pyme = get_object_or_404(PYME, id_PYME=id_pyme, user=request.user)
+    
+    if request.method == 'POST':
+        form = PYMEForm2(request.POST, request.FILES, instance=pyme)
+        if form.is_valid():
+            form.save()
+            return redirect('pyme_usuario')
+    else:
+        form = PYMEForm2(instance=pyme)
+    
+    context = {'form': form, 'pyme': pyme}
+    return render(request, 'main/pyme_usuario_edit.html', context)
+
+def pyme_usuario_delete(request, id_pyme):
+    pyme = get_object_or_404(PYME, id_PYME=id_pyme, user=request.user)
+    
+    if request.method == 'POST':
+        pyme.delete()
+        return redirect('pyme_usuario')
+    
+    context = {'pyme': pyme}
+    return render(request, 'main/pyme_usuario_delete.html', context)

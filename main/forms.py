@@ -20,3 +20,8 @@ class PYMEForm(forms.ModelForm):
     class Meta:
         model = PYME
         fields = ['nombre', 'direccion', 'categoria', 'descripcion', 'estado', 'user']
+
+class PYMEForm2(forms.ModelForm):
+    class Meta:
+        model = PYME
+        fields = ['nombre', 'direccion', 'categoria', 'descripcion', 'estado', 'imagen']

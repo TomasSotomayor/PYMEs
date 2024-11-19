@@ -9,6 +9,7 @@ class PYME(models.Model):
     descripcion = models.CharField(max_length=500)  # obligatoria
     estado = models.BooleanField(default=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)  # clave foránea conectada con User
+    imagen = models.ImageField(upload_to='pymes/', blank=True, null=True)  # Campo para la imagen
 
     def __str__(self):
         return self.nombre

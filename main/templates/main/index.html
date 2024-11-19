@@ -82,6 +82,29 @@
             </div>
         </div>
     </div>
+
+    <div class="pyme-section">
+        <div class="section-title">PYMES</div>
+        <div class="pymes-saved">
+            {% for pyme in pymes %}
+                <div class="card" style="width: 18rem; margin: 1rem;">
+                    {% if pyme.imagen %}
+                        <img src="{{ pyme.imagen.url }}" class="card-img-top" alt="Imagen de {{ pyme.nombre }}"
+                            style="height: 12rem; object-fit: cover;" />
+                    {% else %}
+                        <img src="{% static 'main/img/error.jpg' %}" class="card-img-top" alt="Imagen no disponible"
+                            style="height: 12rem; object-fit: cover;" />
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ pyme.nombre }}</h5>
+                        <p class="card-text">{{ pyme.descripcion }}</p>
+                        <a class="view-more" href="#">Ver más</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}

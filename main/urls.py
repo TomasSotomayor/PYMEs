@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from .views import productos
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
 
@@ -28,5 +31,10 @@ urlpatterns = [
     path('pymes/<int:id>/delete/', views.pyme_delete, name='pyme_delete'),
 
     #urls usuarios
-    path('pyme_usuario/',views.pyme_usuario, name='pyme_usuario')
+    path('pyme_usuario/',views.pyme_usuario, name='pyme_usuario'),
+    path('pyme_usuario/edit/<int:id_pyme>/', views.pyme_usuario_edit, name='pyme_usuario_edit'),
+    path('pyme_usuario/delete/<int:id_pyme>/', views.pyme_usuario_delete, name='pyme_usuario_delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

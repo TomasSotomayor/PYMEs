@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>Editar PYME</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+    <a href="{% url 'pyme_usuario' %}">Cancelar</a>
+</form>
+
+{% endblock %}
