@@ -18,7 +18,7 @@
 }
 
 #theme-toggle:hover {
-    fill: rgb(255, 235, 185);
+    fill:var(--button-hover-color);
 }
 
 body {
@@ -68,7 +68,7 @@ body.light-mode {
 .clickable-icon {
     width: 60px;
     height: 60px;
-    cursor: pointer; /* Muestra que es clicable */
+    cursor: pointer;
 }
 
 .container {
@@ -82,41 +82,40 @@ body.light-mode {
     padding: 20px;
 }
 
-/* Estilos para el apartado de inicio de sesión y registro de usuario*/
 .login-container {
-    background-color: white; /* Fondo blanco */
+    background-color: white;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
-    margin: auto; /* Centrar en la página */
-    margin-top: 100px; /* Espacio desde el top */
+    margin: auto;
+    margin-top: 100px;
 }
 
 .login-container h2 {
-    color: black; /* Color del texto del título */
+    color: black;
 }
 
 .login-container .btn {
-    background-color: var(--button-color); /* Color de fondo del botón */
-    border: none; /* Sin borde */
+    background-color: var(--button-color);
+    border: none;
 }
 
 .login-container .btn:hover {
-    background-color: var(--button-hover-color); /* Color al pasar el ratón sobre el botón */
+    background-color: var(--button-hover-color);
 }
 
 .login-container .form-control {
-    border-radius: 5px; /* Bordes redondeados para inputs */
+    border-radius: 5px;
 }
 
 .login-container .text-center a {
-    color: var(--button-color); /* Color del enlace de registro */
+    color: var(--button-color);
     text-decoration: none;
 }
 
 .login-container .text-center a:hover {
-    text-decoration: underline; /* Subrayado al pasar el ratón sobre el enlace */
+    text-decoration: underline;
 }
 
 .logo {
@@ -173,7 +172,7 @@ body.light-mode {
 }
 
 .profile-options button:hover, .config-options button:hover {
-    background-color: rgb(255, 235, 185);
+    background-color: var(--button-hover-color);
 }
 
 .pyme-section {
@@ -217,7 +216,7 @@ body.light-mode {
     flex-direction: column;
     align-items: center;
     flex: 1;
-    max-width: 500px; /* Limitar el tamaño máximo del área del buscador */
+    max-width: 500px;
 }
 
 .section-title {
